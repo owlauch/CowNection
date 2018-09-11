@@ -53,6 +53,14 @@ $(function () {
         if (dps.length > dataLength) {
             dps.shift();
         }
+        for (var j = 0; j < count; j++) {
+		yVal = yVal +  Math.round(5 + Math.random() *(-5-5));
+		dps.push({
+			x: xVal,
+			y: yVal
+		});
+		xVal++;
+	  }
 
         chart.render();
     };
