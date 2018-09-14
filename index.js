@@ -27,7 +27,8 @@ io.on('connection', function (socket) {
 });
 
 //chamar esse metodo para classicar o movimento, passando os parametros conforme exemplo abaixo.
-function classificarMovimento() {
+setInterval(
+function () {
 
   //parametros para demostração  
   var params = "-15196,-0.913818359375,-548,-0.060791015625,1620,0.096923828125,-266,-266,49,0,-3049,-24,-5.70035711339,81.2437656066"
@@ -35,12 +36,13 @@ function classificarMovimento() {
   var exec = require('child_process').exec;
   var child = exec('java -jar classificador\\Cownex\\dist\\Cownex.jar ' + params,
     function (error, stdout, stderr) {
-      res.send(stdout);
+      // res.send(stdout);
+      io.emit('teste',stdout);
       if (error !== null) {
         console.log(error);
       }
     });
-}
+}, 3000);
 
 http.listen(port, function () {
   console.log('listening on *:' + port);

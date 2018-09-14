@@ -41,7 +41,8 @@
     </footer>
 </body>
 <footer>
-    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <script>
         $(function () {
@@ -64,11 +65,13 @@
             var updateInterval = 1000;
             var dataLength = 20;
             var socket = io();
-            $('form').submit(function () {
-                socket.emit('chat message', $('#m').val());
-                $('#m').val('');
-                return false;
-            });
+
+            // $('form').submit(function () {
+            //     socket.emit('chat message', $('#m').val());
+            //     $('#m').val('');
+            //     return false;
+            // });
+
             socket.on('chat message', function (msg) {
                 dps.push({
                     x: xVal,
@@ -76,6 +79,9 @@
                 });
                 xVal++;
             });
+            socket.on('teste', function (msg) {
+               console.log(msg); 
+            })
             var updateChart = function (count) {
 
                 count = count || 1;
